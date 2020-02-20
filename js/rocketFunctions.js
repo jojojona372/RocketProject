@@ -35,8 +35,8 @@ function calcThrust(rocket) {
 
 function calcArea(rocket) {
 	let f = 0.00005;
-	rocket.area.x = f * (rocket.h * sin(rocket.angle) + rocket.w * cos(rocket.angle));
-	rocket.area.y = f * (rocket.h * cos(rocket.angle) + rocket.w * sin(rocket.angle));
+	rocket.area.x = Math.abs(f * (rocket.h * sin(rocket.angle) + rocket.w * cos(rocket.angle)));
+	rocket.area.y = Math.abs(f * (rocket.h * cos(rocket.angle) + rocket.w * sin(rocket.angle)));
 }
 
 function calcDrag(rocket, environment) {
@@ -61,7 +61,7 @@ function calcDrag(rocket, environment) {
 
 function calcNetForce(rocket, environment) {
 	rocket.force.x = rocket.thrust.x + rocket.drag.x;
-	
+
 	rocket.force.y = rocket.thrust.y + rocket.drag.y + rocket.mass.total * environment.gravity;
 }
 
@@ -70,15 +70,15 @@ function calcPosition(rocket) {
 		rocket.angle += 360;
 	}
 	rocket.angle = rocket.angle % 360;
-	
+
 	rocket.acc.x = rocket.force.x / rocket.mass.total;
-	
+
 	rocket.vel.xDelta = timeStep * rocket.acc.x;
 	rocket.vel.x = rocket.vel.x + rocket.vel.xDelta;
-	
+
 	rocket.pos.xDelta = rocket.vel.x * timeStep;
 	rocket.pos.x = rocket.pos.x + rocket.pos.xDelta;
-	
+
 	if(rocket.pos.x <= 0) {
 		rocket.acc.x = 0;
 		rocket.vel.x = 0;
@@ -89,20 +89,20 @@ function calcPosition(rocket) {
 		rocket.vel.x = 0;
 		rocket.pos.x = canvasW - rocket.w;
 	}
-	
+
 	rocket.acc.y = rocket.force.y / rocket.mass.total;
-	
+
 	rocket.vel.yDelta = timeStep * rocket.acc.y;
 	rocket.vel.y = rocket.vel.y + rocket.vel.yDelta;
-	
+
 	rocket.pos.yDelta = rocket.vel.y * timeStep;
 	rocket.pos.y = rocket.pos.y + rocket.pos.yDelta;
-	
+
 	if(rocket.pos.y <= 0) {
 		rocket.acc.y = 0;
 		rocket.vel.y = 0;
 		rocket.pos.y = 0;
-		
+
 		rocket.vel.x = rocket.vel.x * 0.9;
 		if(Math.abs(rocket.vel.x) <= 0.5) {
 			rocket.vel.x = 0;
