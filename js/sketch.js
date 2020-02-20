@@ -16,8 +16,8 @@ function setup() {
 	//constructor(name = "New simulation", gravity, airDensity)
 	environment = new Environment("Earth", -9.81, 1.225);
 
-	//constructor(name, w, h, thrust, eMass, pMass, fMass, fMax, color = 255)
-	rocket = new Rocket("Rocket", 50, 100, 50, 1, 0, 0, 1);
+	//constructor(name, w, h, thrust, eMass, pMass, fMass, fMax, fUsage, color = 'red')
+	rocket = new Rocket("Rocket", 50, 100, 100, 1, 0, 5, 5, 0.1);
 }
 
 function draw() {
@@ -27,6 +27,7 @@ function draw() {
 	text("X: " + rocket.pos.x.toFixed(1), 20, 20);
 	text("Y: " + rocket.pos.y.toFixed(1), 20, 40);
 	text("Angle: " + rocket.angle.toFixed(1) + "°", 20, 60);
+	text("Fuel: " + rocket.mass.fuel.toFixed(2) + "/" + rocket.mass.fuelMax.toFixed(2), 160, 20);
 
 	let recth = 50;
 	let rectw = 20;

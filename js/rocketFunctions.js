@@ -1,6 +1,6 @@
 
 function doCalculations(rocket) {
-	calcFuelUsage(rocket);
+	//calcFuelUsage(rocket);
 	calcThrust(rocket);
 	calcDrag(rocket, environment);
 	calcNetForce(rocket, environment);
@@ -11,12 +11,12 @@ function doCalculations(rocket) {
 function calcMass(rocket) {
 	rocket.mass.total = rocket.mass.empty + rocket.mass.fuel + rocket.mass.payload;
 }
-
+/*
 function calcFuelUsage(rocket) {
 	if(rocket.mass.fuel >= rocket.fuelUsage * timeStep) {
 			rocket.mass.fuel = rocket.mass.fuel - (rocket.fuelUsage * timeStep);
 	} else {
-		rocket.thrust.total = rocket.mass.fuel / rocket.fuelUsage;
+		rocket.thrust.max = 0;
 		rocket.fuelUsage = 0;
 		rocket.mass.fuel = 0;
 	}
@@ -26,6 +26,23 @@ function calcFuelUsage(rocket) {
 function calcThrust(rocket) {
 	if(rocket.thrust.enabled) {
 		rocket.thrust.current = rocket.thrust.max;
+	} else {
+		rocket.thrust.current = 0;
+	}
+	rocket.thrust.x = cos(rocket.angle) * rocket.thrust.current;
+	rocket.thrust.y = sin(rocket.angle) * rocket.thrust.current;
+}
+*/
+function calcThrust(rocket) {
+	if(rocket.thrust.enabled && rocket.mass.fuel != 0) {
+		if(rocket.mass.fuel >= rocket.fuelUsage * timeStep) {
+				rocket.mass.fuel = rocket.mass.fuel - (rocket.fuelUsage * timeStep);
+				rocket.thrust.current = rocket.thrust.max;
+		} else {
+			rocket.fuelUsage = 0;
+			rocket.mass.fuel = 0;
+			rocket.thrust.current = 0;
+		}
 	} else {
 		rocket.thrust.current = 0;
 	}

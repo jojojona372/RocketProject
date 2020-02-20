@@ -5,10 +5,11 @@ let keyD = 68;
 
 
 class Rocket {
-	constructor(name, w, h, thrust, eMass, pMass, fMass, fMax, color = 'red') {
+	constructor(name, w, h, thrust, eMass, pMass, fMass, fMax, fUsage, color = 'red') {
 		this.name = name;
 		this.w = w;
 		this.h = h;
+		this.fuelUsage = fUsage;
 		this.color = color;
 
 		//This is the angle from the horizontal plane
