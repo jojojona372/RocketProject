@@ -47,7 +47,7 @@ class Rocket {
 		//I have not yet been able to find a method to calculate this accurately, so I will use this value for the time being.
 		this.cDrag = 0.80;
 		this.drag = new Vector(0, 0);
-		
+
 		this.force = new Vector(0, 0);
 		// this.force.x = 0;
 		// this.force.y = 0;

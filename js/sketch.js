@@ -27,13 +27,18 @@ function draw() {
 	text("X: " + rocket.pos.x.toFixed(1), 20, 20);
 	text("Y: " + rocket.pos.y.toFixed(1), 20, 40);
 	text("Angle: " + rocket.angle.toFixed(1) + "°", 20, 60);
-	
+
+	let recth = 50;
+	let rectw = 20;
+
 	push();
-	fill(rocket.color);
-	translate(50 + 0.25 * rocket.w, 80 + 0.25 * rocket.h);
+	translate(50 + 0.5 * rectw, 80 + 0.5 * recth);
 	rotate(-rocket.angle + 90);
-	translate(-0.25 * rocket.w, -0.25 * rocket.h);
-	rect(0, 0, 0.5 * rocket.w, 0.5 * rocket.h);
+	translate(-0.5 * rectw, -0.5 * recth);
+	fill(rocket.color);
+	triangle(0, 15, 10, 0, 20, 15);
+	fill(255);
+	rect(0, 15, rectw, recth-15);
 	pop();
 
 	rocket.draw();
