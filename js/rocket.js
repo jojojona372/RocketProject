@@ -65,4 +65,8 @@ class Rocket {
 			}
 		}
 	}
+
+	calcMass() {
+		this.mass.total = this.mass.empty + this.mass.fuel + this.mass.payload;
+	}
 }

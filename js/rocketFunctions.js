@@ -6,11 +6,11 @@ function doCalculations(rocket) {
 	calcPosition(rocket);
 }
 
-
+/*
 function calcMass(rocket) {
 	rocket.mass.total = rocket.mass.empty + rocket.mass.fuel + rocket.mass.payload;
 }
-
+*/
 function calcThrust(rocket) {
 	if(rocket.thrust.enabled && rocket.mass.fuel != 0) {
 		if(rocket.mass.fuel >= rocket.fuelUsage * timeStep) {
@@ -26,7 +26,7 @@ function calcThrust(rocket) {
 	}
 	rocket.thrust.x = cos(rocket.angle) * rocket.thrust.current;
 	rocket.thrust.y = sin(rocket.angle) * rocket.thrust.current;
-	calcMass(rocket);
+	rocket.calcMass();
 }
 
 function calcArea(rocket) {
