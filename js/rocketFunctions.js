@@ -17,7 +17,7 @@ function calcThrust(rocket) {
 				rocket.mass.fuel = rocket.mass.fuel - (rocket.fuelUsage * timeStep);
 				rocket.thrust.current = rocket.thrust.max;
 		} else {
-			rocket.fuelUsage = 0;
+			//rocket.fuelUsage = 0;
 			rocket.mass.fuel = 0;
 			rocket.thrust.current = 0;
 		}
